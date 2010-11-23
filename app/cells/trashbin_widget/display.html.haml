@@ -1,0 +1,10 @@
+- widget_div do
+  - trash_img = "http://www.bloggingjunction.com/wp-content/uploads/2010/05/recycle-bin.png"
+  = image_tag trash_img, :width => 100, 'data-event-url' => url_for_event(:drop), :id => "trashbin"
+
+  :javascript
+    $("#trashbin").droppable({
+      drop: function(event, ui) {
+        $.ajax({url: $("#trashbin").attr("data-event-url") + "&id=" + ui.draggable.attr("data-id")});
+      }
+    });
